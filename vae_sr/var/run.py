@@ -19,11 +19,6 @@ def get_args():
                         help='Dataset, (default abilene_tm)')
     parser.add_argument('--test', action='store_true')
     parser.add_argument('--device', type=str, default='cuda:0')
-    parser.add_argument('--run_te', type=str, choices=['None', 'gwn_ls2sr', 'gt_ls2sr', 'p0', 'p1', 'p2', 'gwn_p2',
-                                                       'p3', 'onestep', 'prophet', 'laststep', 'laststep_ls2sr',
-                                                       'gwn_cfr_topk',
-                                                       'firststep', 'or', 'gwn_srls', 'gt_srls', 'srls_p0', 'all'],
-                        default='None')
     parser.add_argument('--testset', type=int, default=-1,
                         choices=[-1, 0, 1, 2, 3, 4],
                         help='Test set, (default -1 run all test)')
@@ -69,7 +64,6 @@ def main():
         cmd += ' --test'
         if run_te[0] != 'None':
             for te in run_te:
-                cmd += ' --run_te {}'.format(te)
                 cmd += ' --timeout {}'.format(args.timeout)
                 cmd += ' --nrun {}'.format(args.nrun)
                 print(cmd)

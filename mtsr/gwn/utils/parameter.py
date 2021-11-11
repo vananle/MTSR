@@ -79,10 +79,7 @@ def get_args():
 
     # parameter for test_routing
     parser.add_argument('--ncf', default=10, type=int, help='default 10')
-    parser.add_argument('--run_te', type=str, choices=['None', 'gwn_ls2sr', 'gt_ls2sr', 'p0', 'p1', 'p2', 'gwn_p2',
-                                                       'p3', 'onestep', 'prophet', 'laststep', 'laststep_ls2sr',
-                                                       'firststep', 'or', 'gwn_srls', 'gt_srls', 'srls_p0',
-                                                       'gwn_cfr_topk'],
+    parser.add_argument('--run_te', type=str, choices=['None', 'gwn_ls2sr', 'p0', 'p1', 'p2', 'p3', 'or'],
                         default='None')
 
     parser.add_argument('--timeout', type=float, default=60.0)
