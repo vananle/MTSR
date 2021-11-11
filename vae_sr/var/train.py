@@ -1,18 +1,16 @@
 import os.path
-import sys
-
-import tensorflow as tf
-
-sys.path.append('..')
-
 import time
-import models
-import torch
-import utils
-
 import warnings
 from datetime import date
-from routing import *
+
+import tensorflow as tf
+import torch
+
+import models
+import utils
+from ..routing import *
+
+# sys.path.append('..')
 
 warnings.simplefilter("ignore")
 warnings.filterwarnings("ignore", category=UserWarning)
