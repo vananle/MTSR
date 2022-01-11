@@ -6,7 +6,23 @@ from tqdm import trange
 
 import models
 import utils
-from ..routing import *
+
+import os
+import sys
+
+# getting the name of the directory
+# where the this file is present.
+current = os.path.dirname(os.path.realpath(__file__))
+
+# Getting the parent directory name
+# where the current directory is present.
+parent = os.path.dirname(current)
+
+# adding the parent directory to
+# the sys.path.
+sys.path.append(os.path.dirname(parent))
+
+from mtsr.routing import *
 
 warnings.simplefilter("ignore")
 warnings.filterwarnings("ignore", category=UserWarning)
@@ -105,7 +121,7 @@ def main(args, **model_kwargs):
                          val_mae=np.mean(val_mae), val_mse=np.mean(val_mse),
                          val_mape=np.mean(val_mape), val_rmse=np.mean(val_rmse))
 
-                description = logger.summary(m, engine.model)
+                description = logger.summary(m, engine.model, epoch)
 
                 if logger.stop:
                     break
@@ -143,7 +159,7 @@ def main(args, **model_kwargs):
 
         # run TE
         if args.run_te != 'None':
-            run_te(x_gt, y_gt, yhat, args)
+            run_te(x_gt, y_gt, yhat, args, lo)
 
 
 from datetime import date

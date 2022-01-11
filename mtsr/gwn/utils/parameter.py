@@ -12,7 +12,7 @@ def get_args():
     parser.add_argument('--dataset', type=str, default='abilene_tm',
                         choices=['abilene_tm', 'geant_tm', 'brain_tm', 'renater_tm', 'surfnet_tm', 'uninett_tm'],
                         help='Dataset, (default abilene_tm)')
-    parser.add_argument('--datapath', type=str, default='../../data_mssr/')
+    parser.add_argument('--datapath', type=str, default='../../data/')
     parser.add_argument('--type', type=str, default='p2', choices=['p1', 'p2', 'p3'],
                         help='problem formulation (default p2)')
     parser.add_argument('--trunk', type=int, default=3, help='trunk for p3 problem (default 3)')
@@ -72,7 +72,7 @@ def get_args():
     parser.add_argument('--weight_decay', type=float, default=0.0001, help='weight decay rate')
     parser.add_argument('--learning_rate', type=float, default=0.0005, help='learning rate')
     parser.add_argument('--lr_decay_rate', type=float, default=0.97, help='learning rate')
-    parser.add_argument('--patience', type=int, default=20, help='quit if no improvement after this many iterations')
+    parser.add_argument('--patience', type=int, default=50, help='quit if no improvement after this many iterations')
     parser.add_argument('--verbose', action='store_true')
     parser.add_argument('--test', action='store_true')
     parser.add_argument('--plot', action='store_true')

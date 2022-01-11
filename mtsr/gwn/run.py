@@ -21,9 +21,6 @@ def get_args():
     parser.add_argument('--device', type=str, default='cuda:0')
     parser.add_argument('--run_te', type=str, choices=['None', 'gwn_ls2sr', 'p0', 'p1', 'p2', 'p3', 'or', 'all'],
                         default='None')
-    parser.add_argument('--testset', type=int, default=-1,
-                        choices=[-1, 0, 1, 2, 3, 4],
-                        help='Test set, (default -1 run all test)')
     parser.add_argument('--epochs', type=int, default=100, help='')
     parser.add_argument('--timeout', type=float, default=1.0)
     parser.add_argument('--nrun', type=int, default=3)

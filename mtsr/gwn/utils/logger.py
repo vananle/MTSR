@@ -29,8 +29,10 @@ def display_stats(stats):
 class Logger:
 
     def __init__(self, args):
-        log_dir = '../../logs/im2021/{}_{}.{}_{}_{}_{}_{}'.format(args.model, args.dataset, args.k, args.seq_len_x,
+        parent_logs_path = '../../logs'
+        log_dir = 'gwn/{}_{}.{}_{}_{}_{}_{}'.format(args.model, args.dataset, args.k, args.seq_len_x,
                                                                   args.seq_len_y, args.loss_fn, args.type)
+        log_dir = os.path.join(parent_logs_path, log_dir)
         if args.tod:
             log_dir = log_dir + '_tod'
         if args.ma:
@@ -58,7 +60,7 @@ class Logger:
         self.stop = False
         self.Xhat = None
 
-    def summary(self, m, model):
+    def summary(self, m, model, epoch):
         m = pd.Series(m)
         self.metrics.append(m)
         if m.val_loss < self.min_val_loss:
@@ -75,6 +77,9 @@ class Logger:
             self.patience)
 
         met_df.round(6).to_csv('{}/train_metrics.csv'.format(self.log_dir))
+
+        self.writer.add_scalar('Loss/Train', m.train_loss, epoch)
+        self.writer.add_scalar('Loss/Val', m.val_loss, epoch)
 
         if self.patience >= self.args.patience:
             self.stop = True
